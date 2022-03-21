@@ -1,0 +1,78 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.main-nav{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    min-height: 8vh;
+    border: 2px solid black;
+    font-family: 'Poppins', sans-serif;
+}
+.wordle{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    text-align: center;
+}
+.guess{
+    width: 100px;
+    height: 100px;
+    background: yellow;
+}
+.main{
+    margin-top: 2.5%;
+    width: 70%;
+    margin-left: 15%;
+    margin-right: 15%;
+}
+.attempt-container{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+}
+.userWord{
+    width: 60px; 
+    height: 60px; 
+    border: 2px solid #d3d6da;
+    margin: 4px;
+    font-size: 32px;
+    text-align: center;
+}
+.letter-container{
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 2.5%;
+}
+.letter-row{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+}
+.letter-row button{
+    font-size: 16px;
+    font-weight: 600;
+    height: 55px;
+    width: 45px;
+    margin: 3px;
+    border: none;
+    background-color: #d3d6da;
+    border-radius: 10%;
+}
+#enter-btn{
+    height: 55px;
+    width: 70px;
+}
+.delete-button img{
+    width: 25px;
+    height: 25px;
+    margin: 2px;
+}
+#fname{
+    display: none;
+}
