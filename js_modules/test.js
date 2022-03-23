@@ -8,7 +8,6 @@ const attemptDivs5 = document.querySelectorAll(".attempt-5 div");
 const attemptDivs6 = document.querySelectorAll(".attempt-6 div");
 const characterButtons = document.querySelectorAll(".letter-row button");
 const userWordArr = [];
-const keyboardInput = attemptDivs1[0];
 const deleteButton = document.querySelector(".delete-button");
 
 const allAttemptDivs = [attemptDivs1, attemptDivs2, attemptDivs3, attemptDivs4, attemptDivs5, attemptDivs6];
@@ -52,9 +51,8 @@ const pushTile = (letterAdded, attemptDivs) => {
         return getUserWord();
     }
     topStck++;
-    attemptDivs[topStck].innerHTML = letterAdded.toUpperCase();
-    console.log(attemptDivs[topStck]);
     userWordArr.push(letterAdded);
+    divTileStyles.pushTileStlye(attemptDivs[topStck],letterAdded.toUpperCase());
     console.log(`Size of Stack: ${topStck}`);
     console.log(`Word so far: ${userWordArr}`);
 }
@@ -66,7 +64,7 @@ const removeTile = (attemptDivs) =>{
         return;
     }
     else{
-        attemptDivs[topStck].innerHTML = "";
+        divTileStyles.removeTileStyle(attemptDivs[topStck]);
         userWordArr.pop();
         topStck--;
     }
@@ -203,7 +201,6 @@ let countRow = 0;
         if(letter != "enter"){
             characterButtons[countRow].addEventListener('click', event => {
                pushTile(letter, allAttemptDivs[countAttempts]);
-               hunterBiden(allAttemptDivs[countAttempts]);
             });
         }
         else if(letter == "enter"){
@@ -223,6 +220,13 @@ let countRow = 0;
         removeTile(allAttemptDivs[countAttempts]);
     });
 
-    const hunterBiden = (duv) =>{
-        duv[0].style.border = "2px solid grey";
+    const divTileStyles = {
+        pushTileStlye  : function (divToBeStyled, letter){
+            divToBeStyled.innerHTML = letter;
+            divToBeStyled.style.border = "2px solid grey";
+        },
+        removeTileStyle: function (divToBeStyled){
+            divToBeStyled.innerHTML = "";
+            divToBeStyled.style.border  = "2px solid #d3d6da";
+        }
     }

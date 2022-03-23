@@ -27,6 +27,7 @@
     width: 70%;
     margin-left: 15%;
     margin-right: 15%;
+    font-family: 'Roboto', sans-serif;
 }
 .attempt-container{
     display: flex;
@@ -40,7 +41,9 @@
     border: 2px solid #d3d6da;
     margin: 4px;
     font-size: 32px;
+    color: black;
     text-align: center;
+    padding: 8px;
 }
 .letter-container{
     width: 80%;
@@ -75,4 +78,25 @@
 }
 #fname{
     display: none;
+}
+.shake-wrong{
+    animation: shake 0.5s;
+    animation-iteration-count: 1s;
+}
+@keyframes shake {
+    10%, 90% {
+      transform: translate3d(-1px, 0, 0);
+    }
+    
+    20%, 80% {
+      transform: translate3d(2px, 0, 0);
+    }
+  
+    30%, 50%, 70% {
+      transform: translate3d(-2px, 0, 0);
+    }
+  
+    40%, 60% {
+      transform: translate3d(2px, 0, 0);
+    }
 }
