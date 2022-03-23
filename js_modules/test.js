@@ -9,9 +9,10 @@ const attemptDivs6 = document.querySelectorAll(".attempt-6 div");
 const characterButtons = document.querySelectorAll(".letter-row button");
 const userWordArr = [];
 const deleteButton = document.querySelector(".delete-button");
-
 const allAttemptDivs = [attemptDivs1, attemptDivs2, attemptDivs3, attemptDivs4, attemptDivs5, attemptDivs6];
 let countAttempts = 0;
+
+const randomWordToFind = utilsWord.getRandomWord().toLowerCase();
 window.addEventListener("keydown", event => { 
     console.log(`Black: ${event.key}`);
 
@@ -27,6 +28,9 @@ window.addEventListener("keydown", event => {
             startGame(allAttemptDivs[countAttempts]);
             countAttempts++;
             topStck = -1;
+        }
+        else{
+            divTileStyles.incorrectEnterStyle(allAttemptDivs[countAttempts]);
         }
     }
     else {
@@ -118,28 +122,29 @@ const setCharacterButtons = {
 const displayAttempt = (printAttemptArr, tilesArr) =>{
     for(let i = 0; i < printAttemptArr.length; i++){
         if (printAttemptArr[i] == 'g'){
-            tilesArr[i].style.backgroundColor = "green";
+            tilesArr[i].style.backgroundColor = "#6aaa64";
+            tilesArr[i].style.border = "2px solid #6aaa64";
+            console.log(userWordArr[i]);
         }
         else if (printAttemptArr[i] == 'y'){
-            tilesArr[i].style.backgroundColor = "yellow";
+            tilesArr[i].style.backgroundColor = "#c9b458";
+            tilesArr[i].style.border = "2px solid #c9b458";
         }
         else{
             tilesArr[i].style.backgroundColor = "grey";
         }
+        tilesArr[i].style.color = "#FFF";
     }
 }
 
-/*function preStart(){
-    for(let i = 0; i < )
-}*/
 function startGame(attemptDivs){
     let userGuess = getUserWord();
 
-    let find = findIndex(userGuess, "crane");
+    let find = findIndex(userGuess, randomWordToFind);
 
     console.log(`Index of Match Letter: ${find}`);
 
-    let logf = printAttempt(find, userGuess, "crane");
+    let logf = printAttempt(find, userGuess, randomWordToFind);
     displayAttempt(logf, attemptDivs);
     console.log(getUserWord());
     clearWordStack();
@@ -220,13 +225,27 @@ let countRow = 0;
         removeTile(allAttemptDivs[countAttempts]);
     });
 
-    const divTileStyles = {
-        pushTileStlye  : function (divToBeStyled, letter){
-            divToBeStyled.innerHTML = letter;
-            divToBeStyled.style.border = "2px solid grey";
-        },
-        removeTileStyle: function (divToBeStyled){
-            divToBeStyled.innerHTML = "";
-            divToBeStyled.style.border  = "2px solid #d3d6da";
+const divTileStyles = {
+    pushTileStlye      : (divToBeStyled, letter) =>{
+        divToBeStyled.innerHTML = letter;
+        divToBeStyled.style.border = "2px solid grey";
+    },
+    removeTileStyle    : (divToBeStyled) =>{
+        divToBeStyled.innerHTML = "";
+        divToBeStyled.style.border  = "2px solid #d3d6da";
+    },
+    incorrectEnterStyle: (divToBeStyled) => {
+        for (let i = 0; i < 5; i++){
+            divToBeStyled[i].classList.toggle('shake-wrong');   
+        }
+    },
+    findLetterToStyle : (letterToFind) =>{
+        for(const letter of characterButtons){
+            if(letterToFind == letter.innerHTML){
+                console.log("Found");
+                console.log(letter);
+                return letter;
+            }
         }
     }
+}
