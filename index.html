@@ -8,21 +8,96 @@
     <title>Document</title>
 </head>
 <body>
-    <section class="game-screen">
-        <h1>Timer</h1>
-        <h2 id="Minutes">0:00</h2>
-        <button onclick="buttonClick()" id="testing" style="font-size: 40px; width: 25%;">Start</button>
-        <button onclick="stopClick()" id="stop" style="font-size: 40px; width: 25%;">Stop</button>
+    <nav class="main-nav">
+        <h1>Chordle</h1>
+    </nav>
+
+    <section class="main">
+        <div class="attempt-container attempt-1">
+            <div class="userWord"></div>
+            <div class="userWord"></div>
+            <div class="userWord"></div>
+            <div class="userWord"></div>
+            <div class="userWord"></div>
+        </div>
+        <div class="attempt-container attempt-2">
+            <div class="userWord"></div>
+            <div class="userWord"></div>
+            <div class="userWord"></div>
+            <div class="userWord"></div>
+            <div class="userWord"></div>
+        </div>
+        <div class="attempt-container attempt-3">
+            <div class="userWord"></div>
+            <div class="userWord"></div>
+            <div class="userWord"></div>
+            <div class="userWord"></div>
+            <div class="userWord"></div>
+        </div>
+        <div class="attempt-container attempt-4">
+            <div class="userWord"></div>
+            <div class="userWord"></div>
+            <div class="userWord"></div>
+            <div class="userWord"></div>
+            <div class="userWord"></div>
+        </div>
+        <div class="attempt-container attempt-5">
+            <div class="userWord"></div>
+            <div class="userWord"></div>
+            <div class="userWord"></div>
+            <div class="userWord"></div>
+            <div class="userWord"></div>
+        </div>
+        <div class="attempt-container attempt-6">
+            <div class="userWord"></div>
+            <div class="userWord"></div>
+            <div class="userWord"></div>
+            <div class="userWord"></div>
+            <div class="userWord"></div>
+        </div>
     </section>
 
-    <section class="wordle">
-        <div class="guess" id="index-0"></div>
-        <div class="guess" id="index-1"></div>
-        <div class="guess" id="index-2"></div>
-        <div class="guess" id="index-3"></div>
-        <div class="guess" id="index-4"></div>
+    <section class="letter-container">
+        <div class="letter-row">
+            <button class="letter-btn">Q</button>
+            <button class="letter-btn">W</button>
+            <button class="letter-btn">E</button>
+            <button class="letter-btn">R</button>
+            <button class="letter-btn">T</button>
+            <button class="letter-btn">Y</button>
+            <button class="letter-btn">U</button>
+            <button class="letter-btn">I</button>
+            <button class="letter-btn">O</button>
+            <button class="letter-btn">P</button>
+        </div>
+
+        <div class="letter-row">
+            <button class="letter-btn">A</button>
+            <button class="letter-btn">S</button>
+            <button class="letter-btn">D</button>
+            <button class="letter-btn">F</button>
+            <button class="letter-btn">G</button>
+            <button class="letter-btn">H</button>
+            <button class="letter-btn">J</button>
+            <button class="letter-btn">K</button>
+            <button class="letter-btn">L</button>
+        </div>
+
+        <div class="letter-row ">
+            <button class="enter-button" id="enter-btn">ENTER</button>
+            <button class="letter-btn">Z</button>
+            <button class="letter-btn">X</button>
+            <button class="letter-btn">C</button>
+            <button class="letter-btn">V</button>
+            <button class="letter-btn">B</button>
+            <button class="letter-btn">N</button>
+            <button class="letter-btn">M</button>
+            <button class="delete-button" id="delete-btn"><img src="delete-left-solid.svg" alt=""></button>
+        </div>
     </section>
-    <button onclick="" id="stop" style="font-size: 40px; width: 25%;">Submit</button>
-    <script type="module" src="test.js"></script>
+
+    <script src="https://kit.fontawesome.com/29a33a9005.js" crossorigin="anonymous"></script>
+
+    <script type="module" src="./js_modules/test.js"></script>
 </body>
 </html>
