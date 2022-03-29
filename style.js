@@ -18,7 +18,6 @@ function findIndex(word, userWord){
 
         for(let j = 0; j < 5; j++){
             if(wordArr[i] == guessArr[j]){
-                console.log(wordArr[i]);
                 if(i == j){
                     match[count1] = j;
                     count1++;
@@ -57,7 +56,6 @@ let match = [-1,-1,-1,-1,-1];
 
         }
     }
-    console.log(`Match: ${match}`);
     return match;
 }
 function isAlreadyInArray(num, nums){
@@ -85,3 +83,7 @@ function getCountOfLetter(non, index){
 
     return count;
 }
+
+let characterRankings = [];
+const ilt = typeof(characterRankings[2]) == "undefined";
+console.log(ilt);
