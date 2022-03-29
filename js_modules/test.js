@@ -11,8 +11,8 @@ const userWordArr = [];
 const deleteButton = document.querySelector(".delete-button");
 const allAttemptDivs = [attemptDivs1, attemptDivs2, attemptDivs3, attemptDivs4, attemptDivs5, attemptDivs6];
 let countAttempts = 0;
-
 const randomWordToFind = utilsWord.getRandomWord().toLowerCase();
+
 window.addEventListener("keydown", event => { 
     console.log(`Black: ${event.key}`);
 
@@ -31,6 +31,7 @@ window.addEventListener("keydown", event => {
         }
         else{
             divTileStyles.incorrectEnterStyle(allAttemptDivs[countAttempts]);
+            setTimeout(toggleClass, 1000, allAttemptDivs[countAttempts]);
         }
     }
     else {
@@ -64,7 +65,7 @@ const pushTile = (letterAdded, attemptDivs) => {
 //Remove letter from tile
 const removeTile = (attemptDivs) =>{
     if(topStck == -1){
-        console.log("Stack is Empty");
+        console.log("Stack is Empty");matc
         return;
     }
     else{
@@ -121,27 +122,33 @@ const setCharacterButtons = {
 
 const displayAttempt = (printAttemptArr, tilesArr) =>{
     for(let i = 0; i < printAttemptArr.length; i++){
+        let currentLetterTile  = divTileStyles.findLetterToStyle(userWordArr[i].toUpperCase());
+    
         if (printAttemptArr[i] == 'g'){
             tilesArr[i].style.backgroundColor = "#6aaa64";
             tilesArr[i].style.border = "2px solid #6aaa64";
-            console.log(userWordArr[i]);
+            currentLetterTile.style.backgroundColor = "#6aaa64";
         }
         else if (printAttemptArr[i] == 'y'){
             tilesArr[i].style.backgroundColor = "#c9b458";
             tilesArr[i].style.border = "2px solid #c9b458";
+            currentLetterTile.style.backgroundColor = "#c9b458";
         }
         else{
             tilesArr[i].style.backgroundColor = "grey";
+            currentLetterTile.style.backgroundColor = "#c9b458";
         }
         tilesArr[i].style.color = "#FFF";
+        currentLetterTile.style.color = "#FFF";
     }
 }
 
 function startGame(attemptDivs){
     let userGuess = getUserWord();
 
-    let find = findIndex(userGuess, randomWordToFind);
+    let find = findIndex(randomWordToFind, userGuess);
 
+    console.log(`Find Noob: ${find}`);
     console.log(`Index of Match Letter: ${find}`);
 
     let logf = printAttempt(find, userGuess, randomWordToFind);
@@ -152,22 +159,36 @@ function startGame(attemptDivs){
 }
 
 //Finds correct index if letter matches letter in game word
-function findIndex(userWord, randomWord){
-    let indexArr = [-1,-1,-1,-1,-1];
-    let count = 0;
-
-    for(let i = 0; i < 5; i++){
-        for(let j = 0; j < 5; j++){
-            if(userWord.charAt(j)==randomWord.charAt(i) && isAlreadyInArray(j, indexArr)){
-                indexArr[count] = j;
+function findIndex(word, userWord){
+    let match = [-1,-1,-1,-1,-1];
+    
+        let wordArr = Array.from(word);
+        let guessArr = Array.from(userWord);
+        let count = 0;
+    
+        for(let i = 0; i < 5; i++){
+            //Exact Match
+            if(wordArr[i] == guessArr[i]){
+                guessArr[i] = '1';
+                match[count] = i;
                 count++;
             }
+            else{
+                for(let j = 0; j < 5; j++){
+                    if(wordArr[i] == guessArr[j] && isAlreadyInArray(j, match)){
+                        if(match[count] == -1){
+                            match[count] = j;
+                            count++;
+                            break;
+                        }   
+                    }
+                }
+    
+            }
         }
+        console.log(`Match: ${match}`);
+        return match;
     }
-    return indexArr;
-}
-
-
 function printAttempt(attemptArr, guess, randomWord){
     let pop = ['*', '*', '*', '*', '*'];
     let guessArr = [...guess];
@@ -247,5 +268,11 @@ const divTileStyles = {
                 return letter;
             }
         }
+    }
+}
+
+function toggleClass(divs){
+    for (let i = 0; i < 5; i++){
+        divs[i].classList.toggle('shake-wrong');   
     }
 }

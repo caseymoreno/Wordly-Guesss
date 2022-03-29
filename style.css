@@ -7,9 +7,28 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    min-height: 8vh;
+    min-height: 5vh;
     border: 2px solid black;
     font-family: 'Poppins', sans-serif;
+}
+.input-answer{
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+    height: 4vh;
+    width: fit-content;
+    margin-top: 5%;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 6%;
+    visibility: hidden;
+}
+.input-answer h1{
+    font-size: 18px;
+    color: #FFFFFF;
+    padding: 15px;
 }
 .wordle{
     display: flex;
@@ -23,7 +42,7 @@
     background: #c9b458;
 }
 .main{
-    margin-top: 2.5%;
+    margin-top: 8%;
     width: 70%;
     margin-left: 15%;
     margin-right: 15%;
@@ -39,7 +58,7 @@
     width: 60px; 
     height: 60px; 
     border: 2px solid #d3d6da;
-    margin: 4px;
+    margin: 2.5px;
     font-size: 32px;
     color: black;
     text-align: center;
@@ -50,6 +69,7 @@
     margin-left: 10%;
     margin-right: 10%;
     margin-top: 2.5%;
+
 }
 .letter-row{
     display: flex;

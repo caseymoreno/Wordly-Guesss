@@ -15235,6 +15235,8 @@ const playWords = ['aback',
 ] ;
 
 const validCharacters = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+const inputAnswerH1 = document.querySelector('.input-answer h1');
+const inputAnswerDiv = document.querySelector('.input-answer');
 
 //Used to confirm if letter is valid
 const isValidCharacter = (letter) => {
@@ -15246,10 +15248,15 @@ const isValidCharacter = (letter) => {
     console.log("Invalid Character Pressed");
     return false;
 }
-
+function removeMessage(){
+    inputAnswerDiv.style.visibility = "hidden";
+}
 //get userGuess Word if it meets length requirements and checks if word is in valid word list
 const isValidWord = (word) =>{
     if (word.length != 5){
+        inputAnswerDiv.style.visibility = "visible";
+        inputAnswerH1.innerHTML = "Not enough letters";
+        setTimeout(removeMessage, 1500);
         return false;
     }
     let low = 0, r = spellCheckWords.length - 1;
@@ -15270,6 +15277,9 @@ const isValidWord = (word) =>{
             r = mid - 1;
         }
     }
+    inputAnswerH1.innerHTML = "Not in Word List";
+    inputAnswerDiv.style.visibility = "visible";
+    setTimeout(removeMessage, 1500);
     return false;  
 }
 
