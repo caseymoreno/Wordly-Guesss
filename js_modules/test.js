@@ -56,21 +56,25 @@ let topStck = -1;
 
 //Push letter into tile
 const pushTile = (letterAdded, attemptDivs) => {
-    if(topStck == MAXSIZE){
-        console.log(`Stack is Full ${getUserWord}`);
-        return getUserWord();
+    if(endGame){
+
+    }else{
+        if(topStck == MAXSIZE){
+            console.log(`Stack is Full ${getUserWord}`);
+            return getUserWord();
+        }
+        topStck++;
+        userWordArr.push(letterAdded);
+        divTileStyles.pushTileStlye(attemptDivs[topStck],letterAdded.toUpperCase());
+        console.log(`Size of Stack: ${topStck}`);
+        console.log(`Word so far: ${userWordArr}`);
     }
-    topStck++;
-    userWordArr.push(letterAdded);
-    divTileStyles.pushTileStlye(attemptDivs[topStck],letterAdded.toUpperCase());
-    console.log(`Size of Stack: ${topStck}`);
-    console.log(`Word so far: ${userWordArr}`);
 }
 
 //Remove letter from tile
 const removeTile = (attemptDivs) =>{
     if(topStck == -1){
-        console.log("Stack is Empty");matc
+        console.log("Stack is Empty");
         return;
     }
     else{
@@ -161,7 +165,7 @@ function startGame(attemptDivs){
     if(userGuess == randomWordToFind){
         console.log("You Won! Game Over.");
         resultsContainer.style.display = "flex";
-        endGame();
+        endGame = true;
     }
     console.log(getUserWord());
     clearWordStack();
