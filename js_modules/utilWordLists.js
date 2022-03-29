@@ -15283,8 +15283,7 @@ const isValidWord = (word) =>{
     return false;  
 }
 
-let pot = "parts";
-console.log(isValidWord(pot));
+
 
 function getRandomWord(){
     let randomIndex = Math.floor(Math.random() * 2315);

@@ -23,7 +23,7 @@
             <div class="close" onclick="closeResultPage()">
                 <img src="close.svg" alt="">
             </div>
-            <h1 class="result-text-1">Congratulations! You found the word!</h1>
+            <h1 class="result-text-1"></h1>
             <h1 class="result-text-2">Refresh the page to play again!</h1>
         </div>
     </div>
@@ -116,7 +116,7 @@
     <script type="module" src="./js_modules/test.js"></script>
     <script>
         const resultContainer = document.querySelector(".alert-result-container");
-        
+
         function closeResultPage(){
             resultContainer.style.display = "none"
         }

@@ -13,11 +13,10 @@ const allAttemptDivs = [attemptDivs1, attemptDivs2, attemptDivs3, attemptDivs4, 
 let countAttempts = 0;
 const randomWordToFind = utilsWord.getRandomWord().toLowerCase();
 const resultsContainer = document.querySelector(".alert-result-container");
+const resultText1 = document.querySelector(".result-text-1");
 let endGame = false;
 
 window.addEventListener("keydown", event => { 
-    console.log(`Black: ${event.key}`);
-
     if(endGame){
         return;
     }else{
@@ -127,31 +126,60 @@ const setCharacterButtons = {
 }
 
 
-
+let keepCharacterRanking = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']; 
+let characterRankings = [];
 
 const displayAttempt = (printAttemptArr, tilesArr) =>{
     for(let i = 0; i < printAttemptArr.length; i++){
         let currentLetterTile  = divTileStyles.findLetterToStyle(userWordArr[i].toUpperCase());
-    
+        let testLetter = divTileStyles.findLetterCharacter(userWordArr[i].toUpperCase());
+        console.log(getCharacterRanking(testLetter));
+        let charRank = getCharacterRanking(testLetter);
+
         if (printAttemptArr[i] == 'g'){
             tilesArr[i].style.backgroundColor = "#6aaa64";
             tilesArr[i].style.border = "2px solid #6aaa64";
-            currentLetterTile.style.backgroundColor = "#6aaa64";
+            if(typeof(getCharacterRanking(testLetter)) == "undefined" || charRank <= 2){
+                currentLetterTile.style.backgroundColor = "#6aaa64";
+                setCharacterRanking(testLetter, 3);
+            }
         }
         else if (printAttemptArr[i] == 'y'){
             tilesArr[i].style.backgroundColor = "#c9b458";
             tilesArr[i].style.border = "2px solid #c9b458";
-            currentLetterTile.style.backgroundColor = "#c9b458";
+
+            if(typeof(getCharacterRanking(testLetter)) == "undefined" || charRank <= 1){
+                currentLetterTile.style.backgroundColor = "#c9b458";
+                setCharacterRanking(testLetter, 2);
+            }
         }
         else{
             tilesArr[i].style.backgroundColor = "grey";
-            currentLetterTile.style.backgroundColor = "#c9b458";
+            console.log(`Sin ${testLetter}`)
+            if(typeof(getCharacterRanking(testLetter)) == "undefined" || charRank <= 0){
+                currentLetterTile.style.backgroundColor = "grey";
+                setCharacterRanking(testLetter, 0);
+            }
         }
         tilesArr[i].style.color = "#FFF";
         currentLetterTile.style.color = "#FFF";
     }
 }
-
+function setCharacterRanking (letter, rank){
+    for(let i = 0; i < keepCharacterRanking.length; i++){
+        if (letter == keepCharacterRanking[i]){
+            characterRankings[i] = rank;
+        } 
+    }
+}
+function getCharacterRanking(letter){
+    for(let i = 0; i < keepCharacterRanking.length; i++){
+        if (letter == keepCharacterRanking[i]){
+            return characterRankings[i];
+        } 
+    }
+    return -1;
+}
 function startGame(attemptDivs){
     let userGuess = getUserWord();
 
@@ -165,6 +193,14 @@ function startGame(attemptDivs){
     if(userGuess == randomWordToFind){
         console.log("You Won! Game Over.");
         resultsContainer.style.display = "flex";
+        resultText1.innerHTML = "Congratulations! You found the word!";
+        
+        endGame = true;
+    }
+    if(countAttempts == 5 && userGuess != randomWordToFind){
+        console.log("You  couldn't find the word! Game Over.");
+        resultsContainer.style.display = "flex";
+        resultText1.innerHTML = `Sorry! All attempts were used. Word was ${randomWordToFind.toUpperCase()}.`;
         endGame = true;
     }
     console.log(getUserWord());
@@ -278,9 +314,14 @@ const divTileStyles = {
     findLetterToStyle : (letterToFind) =>{
         for(const letter of characterButtons){
             if(letterToFind == letter.innerHTML){
-                console.log("Found");
-                console.log(letter);
                 return letter;
+            }
+        }
+    },
+    findLetterCharacter : (letterToFind) =>{
+        for(const letter of characterButtons){
+            if(letterToFind == letter.innerHTML){
+                return letter.innerHTML;
             }
         }
     }
