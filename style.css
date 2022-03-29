@@ -87,14 +87,21 @@
     background-color: #d3d6da;
     border-radius: 10%;
 }
+.letter-btn{
+    cursor: pointer;
+}
 #enter-btn{
     height: 55px;
     width: 70px;
+    cursor: pointer;
 }
 .delete-button img{
     width: 25px;
     height: 25px;
     margin: 2px;
+}
+.delete-button{
+    cursor: pointer;
 }
 #fname{
     display: none;
@@ -119,4 +126,45 @@
     40%, 60% {
       transform: translate3d(2px, 0, 0);
     }
+}
+.alert-result-container{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.6);
+    font-family: 'Roboto', sans-serif;
+    z-index: 2;
+    display: none;
+}
+.alert-result{
+    position: fixed;
+    width: 38vh;
+    height: 35vh;
+    background-color: #FFF;
+    z-index: 2;
+    top: 50%;
+    left: 50%;
+    margin-top: -25%;
+    margin-left: -250px; 
+    box-shadow: 0px 0px 10px 4px rgba(0, 0, 0, 0.2);
+}
+.close{
+    position: absolute;
+    right: 0;
+    margin: 5px;
+    cursor: pointer;
+}
+.result-text-1{
+    text-align: center;
+    margin-top: 25%;
+    font-size: 16px;
+}
+.result-text-2{
+    text-align: center;
+    margin-top: 10%;
+    font-size: 16px;
 }

@@ -12,10 +12,20 @@
 </head>
 <body>
     <nav class="main-nav">
-        <h1>Chordle</h1>
+        <h1>Word Guess</h1>
     </nav>
     <div class="input-answer">
         <h1></h1>
+    </div>
+
+    <div class="alert-result-container">
+        <div class="alert-result">
+            <div class="close" onclick="closeResultPage()">
+                <img src="close.svg" alt="">
+            </div>
+            <h1 class="result-text-1">Congratulations! You found the word!</h1>
+            <h1 class="result-text-2">Refresh the page to play again!</h1>
+        </div>
     </div>
 
     <section class="main">
@@ -103,7 +113,13 @@
     </section>
 
     <script src="https://kit.fontawesome.com/29a33a9005.js" crossorigin="anonymous"></script>
-
     <script type="module" src="./js_modules/test.js"></script>
+    <script>
+        const resultContainer = document.querySelector(".alert-result-container");
+        
+        function closeResultPage(){
+            resultContainer.style.display = "none"
+        }
+    </script>
 </body>
 </html>

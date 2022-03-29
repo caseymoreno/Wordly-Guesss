@@ -12,34 +12,39 @@ const deleteButton = document.querySelector(".delete-button");
 const allAttemptDivs = [attemptDivs1, attemptDivs2, attemptDivs3, attemptDivs4, attemptDivs5, attemptDivs6];
 let countAttempts = 0;
 const randomWordToFind = utilsWord.getRandomWord().toLowerCase();
+const resultsContainer = document.querySelector(".alert-result-container");
+let endGame = false;
 
 window.addEventListener("keydown", event => { 
     console.log(`Black: ${event.key}`);
 
-
-    let keyPressed = event.key;
-    if (keyPressed == "Backspace"){
-        removeTile(allAttemptDivs[countAttempts]);
-    }
-    else if (keyPressed == "Enter"){
-        event.preventDefault();
-        if (utilsWord.isValidWord(getUserWord())){
-            console.log(`Game has been started with guess: ${getUserWord()}`);
-            startGame(allAttemptDivs[countAttempts]);
-            countAttempts++;
-            topStck = -1;
+    if(endGame){
+        return;
+    }else{
+        let keyPressed = event.key;
+        if (keyPressed == "Backspace"){
+            removeTile(allAttemptDivs[countAttempts]);
         }
-        else{
-            divTileStyles.incorrectEnterStyle(allAttemptDivs[countAttempts]);
-            setTimeout(toggleClass, 1000, allAttemptDivs[countAttempts]);
+        else if (keyPressed == "Enter"){
+            event.preventDefault();
+            if (utilsWord.isValidWord(getUserWord())){
+                console.log(`Game has been started with guess: ${getUserWord()}`);
+                startGame(allAttemptDivs[countAttempts]);
+                countAttempts++;
+                topStck = -1;
+            }
+            else{
+                divTileStyles.incorrectEnterStyle(allAttemptDivs[countAttempts]);
+                setTimeout(toggleClass, 1000, allAttemptDivs[countAttempts]);
+            }
         }
-    }
-    else {
-        if (utilsWord.isValidCharacter(keyPressed)){
-            pushTile(keyPressed, allAttemptDivs[countAttempts]);
-        }
-        else{
-            return;
+        else {
+            if (utilsWord.isValidCharacter(keyPressed)){
+                pushTile(keyPressed, allAttemptDivs[countAttempts]);
+            }
+            else{
+                return;
+            }
         }
     }
 });
@@ -153,10 +158,16 @@ function startGame(attemptDivs){
 
     let logf = printAttempt(find, userGuess, randomWordToFind);
     displayAttempt(logf, attemptDivs);
+    if(userGuess == randomWordToFind){
+        console.log("You Won! Game Over.");
+        resultsContainer.style.display = "flex";
+        endGame();
+    }
     console.log(getUserWord());
     clearWordStack();
     
 }
+
 
 //Finds correct index if letter matches letter in game word
 function findIndex(word, userWord){
@@ -276,3 +287,4 @@ function toggleClass(divs){
         divs[i].classList.toggle('shake-wrong');   
     }
 }
+
