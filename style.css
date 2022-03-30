@@ -42,7 +42,7 @@
     background: #c9b458;
 }
 .main{
-    margin-top: 8%;
+    margin-top: 4%;
     width: 70%;
     margin-left: 15%;
     margin-right: 15%;
@@ -89,11 +89,13 @@
 }
 .letter-btn{
     cursor: pointer;
+    color: black;
 }
 #enter-btn{
     height: 55px;
     width: 70px;
     cursor: pointer;
+    color: black;
 }
 .delete-button img{
     width: 25px;
@@ -102,6 +104,7 @@
 }
 .delete-button{
     cursor: pointer;
+    color: black;
 }
 #fname{
     display: none;
